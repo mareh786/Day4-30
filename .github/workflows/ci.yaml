@@ -25,3 +25,13 @@ jobs:
       -   name: Stop Flask app
           run: |
             pkill -f "python app.py"  
+      -   name: Email Notification
+          if: success()
+          uses: dawidd6/action-send-mail@v3
+          with:
+            server_address: smtp.gmail.com
+            server_port: 587
+            subject: Github actions Success report
+            to: mohammedadilrehan@gmail.com
+            from: mareh786
+            body: Build job of ${{github.repository}} completed successfully!
