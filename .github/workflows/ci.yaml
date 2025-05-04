@@ -11,20 +11,21 @@ jobs:
           with:
             python-version: '3.13.3'
             cache: 'pip'
-      -   name: installing dependencies
-          run: pip install -r requirements.txt
-      -   name: Test
-          run: python test_app.py
-      -   name: Run Flask app in the background
-          run: |
-            nohup python app.py &  
-            sleep 5  # 
-      -   name: Run tests or perform further actions
-          run: |
-            curl http://127.0.0.1:5000  
+    #   -   name: installing dependencies
+    #       run: pip install -r requirements.txt
+    #   -   name: Test
+    #       run: python test_app.py
+    #   -   name: Run Flask app in the background
+    #       run: |
+    #         nohup python app.py &  
+    #         sleep 5  # 
+    #   -   name: Run tests or perform further actions
+    #       run: |
+    #         curl http://127.0.0.1:5000  
       -   name: Stop Flask app
           run: |
-            pkill -f "python app.py"  
+            # pkill -f "python app.py"  
+            exit 1
       -   name: Email Notification
           if: success()
           uses: dawidd6/action-send-mail@v4
@@ -37,4 +38,16 @@ jobs:
             to: mohammedadilrehan@gmail.com
             from: Mohammed Adil Rehan
             body: Build job of ${{github.repository}} completed successfully!
+      -   name: Email Notification
+          if: failure()
+          uses: dawidd6/action-send-mail@v4
+          with:
+              server_address: smtp.gmail.com
+              server_port: 587
+              username: ${{secrets.MAIL_USERNAME}}
+              password: ${{secrets.MAIL_PASSWORD}}
+              subject: Github actions Success report
+              to: mohammedadilrehan@gmail.com
+              from: Mohammed Adil Rehan
+              body: Build job of ${{github.repository}} failed!
             
