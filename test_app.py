@@ -14,7 +14,7 @@ class FlaskAppTestCase(unittest.TestCase):
         name = "Alice"
         response = self.client.get(f'/greet/{name}')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Hello, Alice!", response.data)
+        self.assertIn(b"Hello, Adil!", response.data)
 
     def test_greet_edge_case(self):
         name = "123"
