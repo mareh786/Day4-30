@@ -16,4 +16,12 @@ jobs:
       -   name: Test
           run: python test_app.py
       -   name: Run the app
-          run: python app.py
+          run: |
+                python app.py
+                sleep 5
+
+      -   name: Test the app
+          run: |
+                curl http://127.0.0.1:5000
+                sleep 5
+                pkill -f "python app.py"
