@@ -17,10 +17,10 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertIn(b"Hello, Adil!", response.data)
 
     def test_greet_edge_case(self):
-    name = "123"
-    response = self.client.get(f'/greet/?name={name}')
-    self.assertEqual(response.status_code, 200)
-    self.assertIn(b"Hello, 123!", response.data)
+        name = "123"
+        response = self.client.get(f'/greet/?name={name}')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Hello, 123!", response.data)
 
 
 if __name__ == '__main__':
