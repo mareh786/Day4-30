@@ -31,6 +31,8 @@ jobs:
           with:
             server_address: smtp.gmail.com
             server_port: 587
+            username: ${{secrets.MAIL_UN}}
+            password: ${{secrets.MAIL_PD}}
             subject: Github actions Success report
             to: mohammedadilrehan@gmail.com
             from: mareh786
