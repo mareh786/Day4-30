@@ -13,3 +13,5 @@ jobs:
             cache: 'pip'
       -   name: installing dependencies
           run: pip install -r requirements.txt
+      -   name: Test
+          run: python test_app.py
