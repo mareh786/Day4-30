@@ -27,13 +27,14 @@ jobs:
             pkill -f "python app.py"  
       -   name: Email Notification
           if: success()
-          uses: dawidd6/action-send-mail@v3
+          uses: dawidd6/action-send-mail@v4
           with:
             server_address: smtp.gmail.com
             server_port: 587
-            username: ${{secrets.MAIL_UN}}
-            password: ${{secrets.MAIL_PD}}
+            username: ${{secrets.MAIL_USERNAME}}
+            password: ${{secrets.MAIL_PASSWORD}}
             subject: Github actions Success report
             to: mohammedadilrehan@gmail.com
-            from: mareh786
+            from: Mohammed Adil Rehan
             body: Build job of ${{github.repository}} completed successfully!
+            
