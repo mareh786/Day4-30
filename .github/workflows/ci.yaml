@@ -1,0 +1,15 @@
+name: Simple Python App
+on: push
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+      -   name: Checkout repo
+          uses: actions/checkout@v4
+      -   name: python setup
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.13.3'
+            cache: 'pip'
+      -   name: installing dependencies
+          run: pip -r install requirements.txt
